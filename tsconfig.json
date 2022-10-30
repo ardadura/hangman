@@ -12,15 +12,13 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "noImplicitAny": false,
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "node"
     ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+    "paths": { "@/*": ["./src/*"] } ,
     "lib": [
       "esnext",
       "dom",
@@ -33,9 +31,12 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "src",
+    "env.d.ts", "src/**/*", "src/**/*.vue",
+    "./**/*.ts", "./**/*.vue"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

@@ -1,20 +1,47 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import DashboardView from "@/views/DashboardView.vue";
+import HangmanView from "@/views/HangmanView.vue";
+import LoginView from "@/views/LoginView.vue";
+import MainView from "@/views/MainView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: "/login",
+    name: "login",
+    component: LoginView,
+    meta: {
+      isAuthenticated: false,
+    },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/",
+    name: "main",
+    component: MainView,
+    meta: {
+      isAuthenticated: true,
+    },
+    children: [
+      {
+        path: "/",
+        name: "dashboard",
+        component: DashboardView,
+        meta: {
+          isAuthenticated: true,
+        },
+      },
+      {
+        path: "/hangman",
+        name: "hangman",
+        component: HangmanView,
+        meta: {
+          isAuthenticated: true,
+        },
+        beforeEnter: (to, from, next) => {
+          //checkPermission()
+          next();
+        },
+      },
+    ],
   },
 ];
 
