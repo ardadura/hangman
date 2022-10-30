@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import GameItem from "@/components/GameList/GameItem.vue";
+import GameItem from "@/components/GameList/GameItem/GameItem.vue";
 import { ref } from "vue";
 import { GAME_LIST } from "@/constants/constants";
 

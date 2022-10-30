@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import DashboardView from "@/views/DashboardView.vue";
-import HangmanView from "@/views/HangmanView.vue";
+import HangmanGameView from "@/views/HangmanGameView.vue";
 import LoginView from "@/views/LoginView.vue";
 import MainView from "@/views/MainView.vue";
 
@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/hangman",
         name: "hangman",
-        component: HangmanView,
+        component: HangmanGameView,
         meta: {
           isAuthenticated: true,
         },
