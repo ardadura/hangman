@@ -1,8 +1,9 @@
 <template>
   <div class="game-board">
+    <div class="game-board__indicator"><HangmanGameIndicator /></div>
     <div class="game-board__header">
-      <div class="game-board__indicator"><HangmanGameIndicator /></div>
       <div class="game-board__timer"><HangmanGameTimer /></div>
+      <div class="game-board__details"><HangmanGameDetails /></div>
     </div>
     <div class="game-board__content">
       <div class="game-board__content--illustration">
@@ -15,6 +16,7 @@
 
 <script lang="ts">
 import HangmanGameTimer from "@/components/HangmanGame/HangmanGameTimer/HangmaneGameTimer.vue";
+import HangmanGameDetails from "@/components/HangmanGame/HangmanGameDetails/HangmanGameDetails.vue";
 import HangmanGameIndicator from "@/components/HangmanGame/HangmanGameIndicator/HangmanGameIndicator.vue";
 import HangmanGameIllustration from "@/components/HangmanGame/HangmanGameIllustration/HangmanGameIllustration.vue";
 import HangmanGameKeyboard from "@/components/HangmanGame/HangmanGameKeyboard/HangmanGameKeyboard.vue";
@@ -25,6 +27,7 @@ export default {
     HangmanGameIllustration,
     HangmanGameIndicator,
     HangmanGameTimer,
+    HangmanGameDetails,
   },
 };
 </script>
