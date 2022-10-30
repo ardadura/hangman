@@ -5,8 +5,10 @@
       <div class="game-board__timer"><HangmanGameTimer /></div>
     </div>
     <div class="game-board__content">
-      <div class="game-board__illustration"><HangmanGameIllustration /></div>
-      <div class="game-board__keyboard"><HangmanGameKeyboard /></div>
+      <div class="game-board__content--illustration">
+        <HangmanGameIllustration />
+      </div>
+      <div class="game-board__content--keyboard"><HangmanGameKeyboard /></div>
     </div>
   </div>
 </template>
@@ -41,6 +43,27 @@ export default {
     align-items: center;
     flex-wrap: wrap;
     flex: 0 0 100%;
+    &--illustration {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 25%;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+      }
+    }
+    &--keyboard {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 75%;
+      @media screen and (max-width: 992px) {
+        margin-block-start: 1rem;
+        width: 100%;
+      }
+    }
   }
 }
 </style>

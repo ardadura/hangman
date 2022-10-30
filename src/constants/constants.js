@@ -1,3 +1,5 @@
+import { findStringFromCharCode } from "@/utils/helperFunctions";
+
 export const GAME_LIST = [
   {
     name: "Hangman",
@@ -48,3 +50,11 @@ export const GAME_LIST = [
     to: "dashboard",
   },
 ];
+
+export const INITIAL_ALPHABET = Array.from(Array(26)).map((e, i) => {
+  return {
+    text: findStringFromCharCode(i + 65),
+    value: findStringFromCharCode(i + 65),
+    disabled: false,
+  };
+});

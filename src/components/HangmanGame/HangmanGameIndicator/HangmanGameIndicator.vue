@@ -4,7 +4,7 @@
       <ButtonComponent
         :disabled="isGameRunning"
         :text="buttonText"
-        @CTA="startGame"
+        @action="startGame"
       />
     </div>
   </section>

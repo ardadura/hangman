@@ -13,10 +13,10 @@
 import { defineEmits, defineProps } from "vue";
 
 const props = defineProps({ disabled: Boolean, text: String });
-const emit = defineEmits(["CTA"]);
+const emit = defineEmits(["action"]);
 
 const action = () => {
-  return emit("CTA");
+  return emit("action");
 };
 </script>
 
