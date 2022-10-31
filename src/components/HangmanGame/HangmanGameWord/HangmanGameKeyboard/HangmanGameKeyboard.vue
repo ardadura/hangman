@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import KeyboardButton from "@/components/HangmanGame/HangmanGameKeyboard/KeyboardButton/KeyboardButton.vue";
+import KeyboardButton from "@/components/HangmanGame/HangmanGameWord/HangmanGameKeyboard/KeyboardButton/KeyboardButton.vue";
 export default {
   name: "HangmanGameKeyboard",
   components: { KeyboardButton },

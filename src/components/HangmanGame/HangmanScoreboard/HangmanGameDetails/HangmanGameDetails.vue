@@ -2,23 +2,34 @@
   <section aria-label="game details">
     <div class="game-details">
       <span aria-label="game difficulty">
-        Game Difficulty: {{ difficulty }}
+        Game Difficulty: {{ selectedWord.difficulty.toUpperCase() }}
       </span>
       <span aria-label="user name"> User Name: {{ userName }} </span>
+      <span aria-label="completed keywords"
+        >Completed Words: {{ completedWords.toString() }}</span
+      >
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useHangmanStore } from "@/store/HangmanStore";
 
 export default {
   name: "HangmanGameDetails",
   setup() {
+    const store = useHangmanStore();
     const userName = ref("...");
-    const difficulty = ref("...");
+    const selectedWord = computed(() => {
+      return store.getSelectedWord;
+    });
 
-    return { userName, difficulty };
+    const completedWords = computed(() => {
+      return store.getCompletedWorks;
+    });
+
+    return { userName, selectedWord, completedWords };
   },
 };
 </script>

@@ -13,6 +13,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "strictNullChecks":false,
     "types": [
       "webpack-env",
       "jest",
@@ -23,7 +25,10 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "es2017",
+      "es6",
+      "es2016"
     ]
   },
   "include": [

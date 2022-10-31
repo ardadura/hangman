@@ -1,33 +1,46 @@
 <template>
   <div class="game-board">
     <div class="game-board__indicator"><HangmanGameIndicator /></div>
-    <div class="game-board__header">
-      <div class="game-board__timer"><HangmanGameTimer /></div>
-      <div class="game-board__details"><HangmanGameDetails /></div>
-    </div>
-    <div class="game-board__content">
-      <div class="game-board__content--illustration">
-        <HangmanGameIllustration />
+    <div v-if="isGameStartForOnce">
+      <div class="game-board__header">
+        <HangmanScoreboard />
       </div>
-      <div class="game-board__content--keyboard"><HangmanGameKeyboard /></div>
+      <div class="game-board__content">
+        <div class="game-board__content--illustration">
+          <HangmanGameIllustration />
+        </div>
+        <div class="game-board__content--word"><HangmanGameWord /></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import HangmanGameTimer from "@/components/HangmanGame/HangmanGameTimer/HangmaneGameTimer.vue";
-import HangmanGameDetails from "@/components/HangmanGame/HangmanGameDetails/HangmanGameDetails.vue";
 import HangmanGameIndicator from "@/components/HangmanGame/HangmanGameIndicator/HangmanGameIndicator.vue";
 import HangmanGameIllustration from "@/components/HangmanGame/HangmanGameIllustration/HangmanGameIllustration.vue";
-import HangmanGameKeyboard from "@/components/HangmanGame/HangmanGameKeyboard/HangmanGameKeyboard.vue";
+import HangmanScoreboard from "@/components/HangmanGame/HangmanScoreboard/HangmanScoreboard.vue";
+import HangmanGameWord from "@/components/HangmanGame/HangmanGameWord/HangmanGameWord.vue";
+import { useHangmanStore } from "@/store/HangmanStore";
+import { computed } from "vue";
 export default {
   name: "HangmanGameBoard",
   components: {
-    HangmanGameKeyboard,
+    HangmanGameWord,
+    HangmanScoreboard,
     HangmanGameIllustration,
     HangmanGameIndicator,
-    HangmanGameTimer,
-    HangmanGameDetails,
+  },
+  setup() {
+    const store = useHangmanStore();
+
+    const isGameStartForOnce = computed(() => {
+      return store.getGameStartForOnce;
+    });
+    const isGameRunning = computed(() => {
+      return store.getGameStatus;
+    });
+
+    return { isGameRunning, isGameStartForOnce };
   },
 };
 </script>
@@ -56,7 +69,7 @@ export default {
         width: 100%;
       }
     }
-    &--keyboard {
+    &--word {
       display: flex;
       justify-content: center;
       align-items: center;

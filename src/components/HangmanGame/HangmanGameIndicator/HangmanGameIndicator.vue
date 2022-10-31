@@ -11,21 +11,27 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import ButtonComponent from "@/components/Common/Button/ButtonComponent.vue";
+import { useHangmanStore } from "@/store/HangmanStore";
 
 export default {
   name: "HangmanGameIndicator",
   components: { ButtonComponent },
   setup() {
-    const isGameRunning = ref(false);
+    const store = useHangmanStore();
+
+    const isGameRunning = computed(() => {
+      return store.getGameStatus;
+    });
     const buttonText = computed(() => {
       return isGameRunning.value ? "game still running" : "start";
     });
 
     function startGame() {
-      isGameRunning.value = true;
+      store.setGameStart();
     }
+
     return { isGameRunning, buttonText, startGame };
   },
 };

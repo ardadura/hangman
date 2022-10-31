@@ -7,12 +7,16 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
+import { useHangmanStore } from "@/store/HangmanStore";
 
 export default {
   name: "HangmanStatus",
   setup() {
-    const currentStep = ref(0);
+    const store = useHangmanStore();
+    const currentStep = computed(() => {
+      return store.getWrongAttemptsCount;
+    });
 
     const getCurrentStepDetails = computed(() => {
       return `step ${currentStep.value} out of 5`;

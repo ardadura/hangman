@@ -58,3 +58,12 @@ export const INITIAL_ALPHABET = Array.from(Array(26)).map((e, i) => {
     disabled: false,
   };
 });
+
+export let WORDS = [
+  { text: "HOME", difficulty: "easy" },
+  { text: "HAMBURGER", difficulty: "normal" },
+  { text: "GO AWAY", difficulty: "hard" },
+  { text: "CASABLANCA", difficulty: "normal" },
+  { text: "CAR", difficulty: "easy" },
+  { text: "CONGRATULATIONS", difficulty: "hard" },
+];
