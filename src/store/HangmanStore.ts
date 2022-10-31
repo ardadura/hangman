@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { WORDS } from "@/constants/constants";
 
 export const useHangmanStore = defineStore("hangman", {
   state: () => ({
@@ -9,14 +8,20 @@ export const useHangmanStore = defineStore("hangman", {
     selectedChars: [],
     wrongAttemptsCount: 0,
     completedWords: [],
+    words: [],
   }),
   actions: {
     setGameStatus(state) {
       this.gameStatus = state;
     },
+    setWords(words) {
+      this.words = words;
+    },
     setGameStart() {
-      const randomWordForStart = WORDS[(Math.random() * WORDS.length) | 0];
-      this.setWord(randomWordForStart);
+      const randomWordForStart = this.words.filter((item) => !item.completed);
+      this.setWord(
+        randomWordForStart[(Math.random() * randomWordForStart.length) | 0]
+      );
       this.setGameStatus(true);
       this.clearWrongAttempts();
       this.clearChars();
@@ -36,6 +41,8 @@ export const useHangmanStore = defineStore("hangman", {
       }
     },
     setCompletedWords: function (word) {
+      const wordItemId = this.words.find((item) => item.text === word).id;
+      this.words[wordItemId].completed = true;
       this.completedWords.push(word);
     },
     clearChars: function () {
@@ -52,5 +59,6 @@ export const useHangmanStore = defineStore("hangman", {
     getWrongAttemptsCount: (state) => state.wrongAttemptsCount,
     getGameStartForOnce: (state) => state.isGameStartForOnce,
     getCompletedWorks: (state) => state.completedWords,
+    getWords: (state) => state.words,
   },
 });

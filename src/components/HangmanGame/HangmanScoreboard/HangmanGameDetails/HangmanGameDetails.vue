@@ -2,7 +2,8 @@
   <section aria-label="game details">
     <div class="game-details">
       <span aria-label="game difficulty">
-        Game Difficulty: {{ selectedWord.difficulty.toUpperCase() }}
+        Game Difficulty:
+        {{ selectedWord.difficulty.toUpperCase() }}
       </span>
       <span aria-label="user name"> User Name: {{ userName }} </span>
       <span aria-label="completed keywords"

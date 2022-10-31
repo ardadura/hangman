@@ -1,7 +1,9 @@
 <template>
   <div class="game-board">
-    <div class="game-board__indicator"><HangmanGameIndicator /></div>
-    <div v-if="isGameStartForOnce">
+    <div class="game-board__indicator" v-if="!getCompletedWorks">
+      <HangmanGameIndicator />
+    </div>
+    <div v-if="isGameStartForOnce && !getCompletedWorks">
       <div class="game-board__header">
         <HangmanScoreboard />
       </div>
@@ -11,6 +13,12 @@
         </div>
         <div class="game-board__content--word"><HangmanGameWord /></div>
       </div>
+    </div>
+    <div v-if="getCompletedWorks">
+      <h3>
+        CONGRATULATIONS. You have finished the game. You can refresh the page
+        now :)
+      </h3>
     </div>
   </div>
 </template>
@@ -39,8 +47,11 @@ export default {
     const isGameRunning = computed(() => {
       return store.getGameStatus;
     });
+    const getCompletedWorks = computed(() => {
+      return store.getCompletedWorks.length >= 6;
+    });
 
-    return { isGameRunning, isGameStartForOnce };
+    return { isGameRunning, isGameStartForOnce, getCompletedWorks };
   },
 };
 </script>

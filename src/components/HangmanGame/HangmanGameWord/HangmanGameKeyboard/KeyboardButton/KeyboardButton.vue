@@ -32,11 +32,11 @@ export default {
     });
     let alphabet = ref(INITIAL_ALPHABET);
 
-    function action(char: IKeyboard) {
-      store.setChar(char.value);
-      checkSelectedCharInWord(char.value);
+    function action(item: IKeyboard) {
+      store.setChar(item.value);
+      checkSelectedCharInWord(item.value);
       checkWordHasBeenFound();
-      char.disabled = true;
+      item.disabled = true;
     }
 
     function checkSelectedCharInWord(char) {

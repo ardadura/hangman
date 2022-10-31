@@ -8,14 +8,24 @@
   </main>
 </template>
 
-<script>
-import NavigationBar from "@/components/Navigation/NavigationBar";
-import AppHeader from "@/components/Header/AppHeader";
+<script lang="ts">
+import NavigationBar from "@/components/Navigation/NavigationBar.vue";
+import AppHeader from "@/components/Header/AppHeader.vue";
+import { onBeforeMount } from "vue";
+import { WORDS } from "@/constants/constants";
+import { useHangmanStore } from "@/store/HangmanStore";
+
 export default {
   name: "MainView",
   components: {
     NavigationBar,
     AppHeader,
+  },
+  setup() {
+    onBeforeMount(() => {
+      const store = useHangmanStore();
+      store.setWords(WORDS);
+    });
   },
 };
 </script>
