@@ -6,12 +6,13 @@
       :disabled="props.disabled"
       :placeholder="props.placeholder"
       :required="props.required"
+      @input="emit('update:value', $event.target.value)"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   disabled: { type: Boolean, default: false },
@@ -19,7 +20,9 @@ const props = defineProps({
   type: { type: String, default: "text" },
   placeholder: { type: String, default: "Please enter value" },
   required: { type: Boolean, default: false },
+  value: { required: true },
 });
+const emit = defineEmits(["update:value"]);
 </script>
 
 <style lang="scss" scoped>

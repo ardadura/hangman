@@ -1,5 +1,8 @@
 # hangman
 
+## User Accounts 
+You can find users for login via => https://my-json-server.typicode.com/ardadura/hangman-api/users
+
 ## Project setup
 ```
 yarn install

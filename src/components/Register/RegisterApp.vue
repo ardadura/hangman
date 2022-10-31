@@ -3,7 +3,7 @@
     <div class="login">
       <form class="login-form" @submit.prevent="">
         <InputComponent
-          v-model:String="email"
+          v-model:value="email"
           type="email"
           :required="true"
           :disabled="false"
@@ -11,7 +11,7 @@
           placeholder="Please enter your e-mail"
         />
         <InputComponent
-          v-model:String="password"
+          v-model:value="password"
           type="password"
           :required="true"
           :disabled="false"
@@ -23,7 +23,7 @@
             :text="'Back To Login Page'"
             @click="changeLayout('login')"
           />
-          <ButtonComponent :text="'Confirm Registration'" />
+          <ButtonComponent :text="'Confirm Registration'" @click="createUser" />
         </div>
       </form>
     </div>
@@ -34,18 +34,59 @@
 import InputComponent from "@/components/Common/Input/InputComponent.vue";
 import { ref } from "vue";
 import ButtonComponent from "@/components/Common/Button/ButtonComponent.vue";
+import { registerUser } from "@/api/RegisterAPI";
+import { inject } from "vue";
+import router from "@/router";
+import NProgress from "nprogress";
+
 export default {
   name: "RegisterAPP",
   components: { ButtonComponent, InputComponent },
+
   setup(props, { emit }) {
     const email = ref("");
     const password = ref("");
+    const GStore = inject("GStore");
 
     function changeLayout(value) {
       emit("changeLayout", value);
     }
 
-    return { email, password, changeLayout };
+    function createUser() {
+      NProgress.start();
+      registerUser({ email: email.value, password: password.value })
+        .then(() => {
+          setFlashMessage(
+            "You are successfully registered. Redirecting to Login page in 5 seconds",
+            "login",
+            5000
+          );
+        })
+        .catch((error) => {
+          if (error.response && error.response.status == 404) {
+            router.push({
+              name: "404Resource",
+              params: { resource: "event" },
+            });
+          } else {
+            router.push({ name: "NetworkError" });
+          }
+          setFlashMessage(error.message, "login", 5000);
+        })
+        .finally(() => {
+          NProgress.done();
+        });
+    }
+
+    function setFlashMessage(message, page, time) {
+      GStore["flashMessage"] = message;
+      setTimeout(() => {
+        GStore["flashMessage"] = "";
+        changeLayout(page);
+      }, time);
+    }
+
+    return { email, password, changeLayout, createUser };
   },
 };
 </script>
@@ -55,7 +96,11 @@ export default {
   &-form {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     .buttons {
       display: flex;
       width: 100%;

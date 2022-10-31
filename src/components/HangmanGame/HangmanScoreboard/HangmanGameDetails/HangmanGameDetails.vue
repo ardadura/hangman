@@ -6,7 +6,8 @@
       </span>
       <span aria-label="user name"> User Name: {{ userName }} </span>
       <span aria-label="completed keywords"
-        >Completed Words: {{ completedWords.toString() }}</span
+        >Completed Words:
+        {{ completedWords.toString() || "No Completed Words Yet" }}</span
       >
     </div>
   </section>
@@ -20,7 +21,7 @@ export default {
   name: "HangmanGameDetails",
   setup() {
     const store = useHangmanStore();
-    const userName = ref("...");
+    const userName = ref(localStorage.getItem("name"));
     const selectedWord = computed(() => {
       return store.getSelectedWord;
     });
