@@ -7,6 +7,7 @@
       :placeholder="props.placeholder"
       :required="props.required"
       @input="emit('update:value', $event.target.value)"
+      :data-testid="props.dataTestId"
     />
   </div>
 </template>
@@ -21,6 +22,7 @@ const props = defineProps({
   placeholder: { type: String, default: "Please enter value" },
   required: { type: Boolean, default: false },
   value: { required: true },
+  dataTestId: { required: false },
 });
 const emit = defineEmits(["update:value"]);
 </script>

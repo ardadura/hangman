@@ -1,6 +1,7 @@
 <template>
   <section aria-label="login form, need email and password">
     <div class="login-wrapper">
+      <h2>Login</h2>
       <form class="login-wrapper__form" @submit.prevent="">
         <InputComponent
           v-model:value="email"
@@ -9,6 +10,7 @@
           :disabled="false"
           label="E-Mail"
           placeholder="Please enter your e-mail"
+          :dataTestId="'login-email'"
         />
         <InputComponent
           v-model:value="password"
@@ -17,12 +19,18 @@
           :disabled="false"
           label="Password"
           placeholder="Please enter your e-mail"
+          :dataTestId="'login-password'"
         />
         <div class="buttons">
-          <ButtonComponent :text="'Sign In'" @click="login" />
+          <ButtonComponent
+            :text="'Sign In'"
+            @click="login"
+            :dataTestId="'login-sign-in'"
+          />
           <ButtonComponent
             :text="'Register'"
             @click="changeLayout('register')"
+            :dataTestId="'login-register'"
           />
         </div>
       </form>

@@ -1,6 +1,7 @@
 <template>
-  <section aria-label="login form, need email and password">
+  <section aria-label="Register App. Create a new user">
     <div class="login">
+      <h2>Register</h2>
       <form class="login-form" @submit.prevent="">
         <InputComponent
           v-model:value="email"

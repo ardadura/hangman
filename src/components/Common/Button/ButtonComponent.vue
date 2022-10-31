@@ -5,6 +5,7 @@
     @click="action"
     class="button"
     :type="props.type"
+    :data-testid="props.dataTestId"
   >
     {{ props.text }}
   </button>
@@ -13,7 +14,12 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps } from "vue";
 
-const props = defineProps({ disabled: Boolean, text: String, type: String });
+const props = defineProps({
+  disabled: Boolean,
+  text: String,
+  type: String,
+  dataTestId: String,
+});
 const emit = defineEmits(["action"]);
 
 const action = () => {
